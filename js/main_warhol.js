@@ -107,7 +107,7 @@ function mouseReleased() {
 $(document).ready(function() { 
   $('body').on('touchstart', function(e) {
     console.log($(e.target).hasClass('btn'))
-    if (!$(e.target).hasClass('btn') && !$(e.target).parent().hasClass('switch')) {
+    if (!$(e.target).hasClass('btn') && !$(e.target).parent().hasClass('switch') && !$(e.target).is('#copyright') && !$(e.target).parent().is('#copyright')) {
       e.preventDefault();
     }
   });
