@@ -50,6 +50,12 @@ function draw() {
 
   strokeWeight(Math.max(1, 6 - 1.5*Math.sqrt((force.x*force.x) + (force.y*force.y))));
 
+  if (!(previous.x >= 10 && previous.x <= OFF && previous.y >= 10 && previous.y <= OFF)) {
+    previous.x = mouseX;
+    previous.y = mouseY;
+    return;
+  }
+
   if (painting && mouseX >= 10 && mouseX <= OFF && mouseY >= 10 && mouseY <= OFF) {
     if (mode === 0) {
       stroke(cur_colors[0]);
