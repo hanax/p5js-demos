@@ -115,6 +115,11 @@ Particle.prototype.display = function(other) {
 }
 
 $(document).ready(function() { 
+  $('body').on('touchstart', function(e) {
+    if (!$(e.target).hasClass('btn') && !$(e.target).parent().hasClass('btn')) {
+      e.preventDefault();
+    }
+  });
   $('#btn-save').click(function() {
     saveCanvas(canvas,'heart','jpg');
   });
