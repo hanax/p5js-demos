@@ -83,6 +83,7 @@ function Particle(position, force, hue) {
 
 Particle.prototype.update = function() {
   this.offset.add(this.velocity);
+  this.position.add(this.velocity);
   this.velocity.mult(this.drag);
   this.lifespan = Math.max(this.lifespan - 0.003, 0.1);
 }
