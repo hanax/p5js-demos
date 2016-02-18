@@ -1,3 +1,5 @@
+// Build on top of this example: http://p5js.org/examples/demos/Hello_P5_Drawing.php
+
 var paths = [];
 var painting = false;
 var current;
@@ -92,7 +94,7 @@ function Particle(position, force, hue) {
   this.velocity = createVector(force.x/1.5, force.y/1.5);
   this.offset = createVector(0, 0);
   this.drag = 0.98;
-  this.lifespan = 1;
+  this.lifespan = .8;
   this.weight = 1 + random(6);
   this.sat = (Math.min(Math.max(pos_z + 200, 0), 400))/4;
 }
@@ -112,7 +114,7 @@ Particle.prototype.display = function(other) {
 
     strokeCap(ROUND);
     strokeWeight(this.weight);
-    stroke(0, this.sat, 100, this.lifespan);
+    stroke(0, this.sat, 0, this.lifespan);
     bezier(
       this.position.x, this.position.y,
       this.position.x - this.offset.y, this.position.y - this.offset.x,
@@ -121,7 +123,7 @@ Particle.prototype.display = function(other) {
     );
 
     strokeWeight(10 + this.weight * 5);
-    stroke(0, this.sat, 100, this.lifespan/10);
+    stroke(0, this.sat, 0, this.lifespan/10);
     bezier(
       this.position.x, this.position.y,
       this.position.x - this.offset.y, this.position.y - this.offset.x,

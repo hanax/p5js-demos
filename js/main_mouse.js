@@ -1,3 +1,5 @@
+// Build on top of this example: http://p5js.org/examples/demos/Hello_P5_Drawing.php
+
 var paths = [];
 var painting = false;
 var current;
