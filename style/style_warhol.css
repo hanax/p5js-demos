@@ -38,18 +38,8 @@ a:hover {
 }
 
 .switch {
-  position: absolute;
-  left: 20px;
   top: 80px;
-  width: 30px;
-  font-size: 12px;
   text-align: center;
-  z-index: 1;
-  border: 1px solid rgba(0,0,0,.8);
-  padding: 6px 6px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: all .2s;
   background-color: #fbbf07;
 } 
 .switch:hover {

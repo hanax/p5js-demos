@@ -105,7 +105,12 @@ function mouseReleased() {
 }
 
 $(document).ready(function() { 
-  document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
+  $('body').on('touchstart', function(e) {
+    console.log($(e.target).hasClass('btn'))
+    if (!$(e.target).hasClass('btn') && !$(e.target).parent().hasClass('switch')) {
+      e.preventDefault();
+    }
+  });
   $('.switch').click(function() {
     mode = 1 - mode;
     if (mode === 0) {
