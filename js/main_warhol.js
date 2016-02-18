@@ -99,6 +99,7 @@ function mouseReleased() {
 }
 
 $(document).ready(function() { 
+  document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
   $('.switch').click(function() {
     mode = 1 - mode;
     if (mode === 0) {
