@@ -10,6 +10,14 @@ canvas {
   left: 100px;
   z-index: 0;
 }
+a {
+  color: #000;
+  transition: all .2s;
+}
+a:hover {
+  background-color: #000;
+  color: #fff;
+}
 .btn {
   position: absolute;
   left: 20px;
@@ -20,10 +28,9 @@ canvas {
   z-index: 1;
   border: 1px solid rgba(0,0,0,.8);
   padding: 6px 6px;
-  border-radius: 4px;
   cursor: pointer;
   text-transform: uppercase;
-  transition: all .3s;
+  transition: all .2s;
 } 
 .btn:hover {
   background-color: rgba(0,0,0,.8);
@@ -40,13 +47,19 @@ canvas {
   z-index: 1;
   border: 1px solid rgba(0,0,0,.8);
   padding: 6px 6px;
-  border-radius: 4px;
   cursor: pointer;
   text-transform: uppercase;
-  transition: all .3s;
+  transition: all .2s;
   background-color: #fbbf07;
 } 
 .switch:hover {
   background-color: rgba(0,0,0,.8);
   color: #fff;
+}
+#copyright {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 9px;
+  color: rgba(0,0,0,.5);
 }
