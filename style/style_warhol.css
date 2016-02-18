@@ -1,0 +1,52 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #2A2A2A;
+  margin: 0;
+  overflow: hidden;
+}
+canvas {
+  position: absolute;
+  top: 80px;
+  left: 100px;
+  z-index: 0;
+}
+.btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 30px;
+  font-size: 12px;
+  text-align: center;
+  z-index: 1;
+  border: 1px solid rgba(0,0,0,.8);
+  padding: 6px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all .3s;
+} 
+.btn:hover {
+  background-color: rgba(0,0,0,.8);
+  color: #fff;
+}
+
+.switch {
+  position: absolute;
+  left: 20px;
+  top: 80px;
+  width: 30px;
+  font-size: 12px;
+  text-align: center;
+  z-index: 1;
+  border: 1px solid rgba(0,0,0,.8);
+  padding: 6px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all .3s;
+  background-color: #fbbf07;
+} 
+.switch:hover {
+  background-color: rgba(0,0,0,.8);
+  color: #fff;
+}
