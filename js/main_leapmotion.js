@@ -7,6 +7,9 @@ var previous;
 var next = 0;
 var pos_x = -1, pos_y = -1, pos_z = -1;
 
+var VP_WIDTH = -1;
+var VP_HEIGHT = -1;
+
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   current = createVector(0,0);
@@ -42,9 +45,10 @@ function draw() {
 var flag = false;
 Leap.loop(function(frame) {
   frame.hands.forEach(function(hand, index) {
+    // console.log(hand.grabStrength)
     pos_x = hand.screenPosition()[0];
     pos_y = hand.screenPosition()[1];
-    pos_z = hand.screenPosition()[2];
+    grabStrength = hand.grabStrength;
 
     if (!flag && Math.abs(hand.roll()) > 1) {
       flag = true;
@@ -52,7 +56,7 @@ Leap.loop(function(frame) {
         painting = true;
         previous.x = pos_x;
         previous.y = pos_y;
-        paths.push(new Path(pos_z));
+        paths.push(new Path(grabStrength));
       } else {
         next = 0;
         painting = false;
@@ -63,9 +67,9 @@ Leap.loop(function(frame) {
     }
   });
   
-}).use('screenPosition', {scale: 0.25});
+}).use('screenPosition', {scale: 0.35});
 
-function Path(pos_z) {
+function Path(grabStrength) {
   this.particles = [];
 }
 
@@ -95,8 +99,8 @@ function Particle(position, force, hue) {
   this.offset = createVector(0, 0);
   this.drag = 0.98;
   this.lifespan = .8;
-  this.weight = 1 + random(6);
-  this.sat = (Math.min(Math.max(pos_z + 200, 0), 400))/4;
+  this.weight = 2 + random(8);
+  this.grabStrength = grabStrength;
 }
 
 Particle.prototype.update = function() {
@@ -114,7 +118,8 @@ Particle.prototype.display = function(other) {
 
     strokeCap(ROUND);
     strokeWeight(this.weight);
-    stroke(0, this.sat, 0, this.lifespan);
+    stroke(this.position.y, (1-this.grabStrength)*70, (1-this.grabStrength)*70, this.lifespan);
+
     bezier(
       this.position.x, this.position.y,
       this.position.x - this.offset.y, this.position.y - this.offset.x,
@@ -122,8 +127,25 @@ Particle.prototype.display = function(other) {
       other.position.x, other.position.y
     );
 
-    strokeWeight(10 + this.weight * 5);
-    stroke(0, this.sat, 0, this.lifespan/10);
+    bezier(
+      VP_WIDTH - this.position.x, this.position.y,
+      VP_WIDTH - this.position.x - this.offset.y, this.position.y - this.offset.x,
+      VP_WIDTH - other.position.x + this.offset.y, other.position.y + this.offset.x,
+      VP_WIDTH - other.position.x, other.position.y
+    );
+
+    strokeWeight(this.weight / 3);
+    stroke(this.position.y, (1-this.grabStrength)*30, (1-this.grabStrength)*30, this.lifespan/3);
+
+    bezier(
+      VP_WIDTH - this.position.x, this.position.y,
+      VP_WIDTH - this.position.x - this.offset.y, this.position.y - this.offset.x,
+      other.position.x + this.offset.y, other.position.y + this.offset.x,
+      other.position.x, other.position.y
+    );
+
+    strokeWeight(15 + this.weight * 5);
+    stroke(this.position.y, (1-this.grabStrength)*100, 255, this.lifespan/10);
     bezier(
       this.position.x, this.position.y,
       this.position.x - this.offset.y, this.position.y - this.offset.x,
@@ -137,6 +159,8 @@ Leap.loopController.setBackground(true);
 
 $(document).ready(function() { 
   $('#btn-save').click(function() {
-    saveCanvas(canvas,'heart','jpg');
+    saveCanvas(canvas,'draw','jpg');
   });
+  VP_HEIGHT = $(window).height();
+  VP_WIDTH = $(window).width();
 });
