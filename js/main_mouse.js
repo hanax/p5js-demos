@@ -7,6 +7,9 @@ var previous;
 var next = 0;
 var canvas;
 
+var VP_WIDTH = -1;
+var VP_HEIGHT = -1;
+
 function setup() {
   canvas = createCanvas(window.innerWidth, window.innerHeight);
   current = createVector(0,0);
@@ -15,7 +18,7 @@ function setup() {
 };
 
 function draw() {
-  background(240);
+  background(0);
   
   if (millis() > next && painting) {
 
@@ -76,7 +79,7 @@ Path.prototype.display = function() {
 function Particle(position, force, hue) {
   this.position = createVector(position.x, position.y);
   this.velocity = createVector(force.x/2, force.y/2);
-  this.sat = Math.min(10 + Math.sqrt((force.x*force.x) + (force.y*force.y)) * 80, 100);
+  this.sat = Math.min(10 + Math.sqrt((force.x*force.x) + (force.y*force.y)) * 80, 100)/100;
   this.offset = createVector(0, 0);
   this.drag = 0.98;
   this.lifespan = 1;
@@ -98,7 +101,8 @@ Particle.prototype.display = function(other) {
 
     strokeCap(ROUND);
     strokeWeight(this.weight);
-    stroke(0, this.sat, 100, this.lifespan);
+    stroke(this.position.y, (1-this.sat)*100, 100-(1-this.sat)*70, this.lifespan);
+
     bezier(
       this.position.x, this.position.y,
       this.position.x - this.offset.y, this.position.y - this.offset.x,
@@ -106,8 +110,25 @@ Particle.prototype.display = function(other) {
       other.position.x, other.position.y
     );
 
-    strokeWeight(10 + this.weight * 5);
-    stroke(0, this.sat, 100, this.lifespan/10);
+    bezier(
+      VP_WIDTH - this.position.x, this.position.y,
+      VP_WIDTH - this.position.x - this.offset.y, this.position.y - this.offset.x,
+      VP_WIDTH - other.position.x + this.offset.y, other.position.y + this.offset.x,
+      VP_WIDTH - other.position.x, other.position.y
+    );
+
+    strokeWeight(this.weight / 3);
+    stroke(this.position.y, (1-this.sat)*50, 100-(1-this.sat)*30, this.lifespan/3);
+
+    bezier(
+      VP_WIDTH - this.position.x, this.position.y,
+      VP_WIDTH - this.position.x - this.offset.y, this.position.y - this.offset.x,
+      other.position.x + this.offset.y, other.position.y + this.offset.x,
+      other.position.x, other.position.y
+    );
+
+    strokeWeight(15 + this.weight * 5);
+    stroke(this.position.y, (1-this.sat)*100, 100, this.lifespan/10);
     bezier(
       this.position.x, this.position.y,
       this.position.x - this.offset.y, this.position.y - this.offset.x,
@@ -124,6 +145,8 @@ $(document).ready(function() {
     }
   });
   $('#btn-save').click(function() {
-    saveCanvas(canvas,'heart','jpg');
+    saveCanvas(canvas,'drawing','jpg');
   });
+  VP_HEIGHT = $(window).height();
+  VP_WIDTH = $(window).width();
 });

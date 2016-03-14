@@ -18,7 +18,7 @@ function setup() {
 };
 
 function draw() {
-  background(240);
+  background(0);
   
   if (millis() > next && painting) {
 
@@ -58,8 +58,8 @@ Leap.loop(function(frame) {
         previous.y = pos_y;
         paths.push(new Path(grabStrength));
       } else {
-        next = 0;
-        painting = false;
+        // next = 0;
+        // painting = false;
       }
     } 
     if (Math.abs(hand.roll()) <= 1) {
@@ -118,7 +118,7 @@ Particle.prototype.display = function(other) {
 
     strokeCap(ROUND);
     strokeWeight(this.weight);
-    stroke(this.position.y, (1-this.grabStrength)*70, (1-this.grabStrength)*70, this.lifespan);
+    stroke(this.position.y, (1-this.grabStrength)*100, 100-(1-this.grabStrength)*70, this.lifespan);
 
     bezier(
       this.position.x, this.position.y,
@@ -135,7 +135,7 @@ Particle.prototype.display = function(other) {
     );
 
     strokeWeight(this.weight / 3);
-    stroke(this.position.y, (1-this.grabStrength)*30, (1-this.grabStrength)*30, this.lifespan/3);
+    stroke(this.position.y, (1-this.grabStrength)*50, 100-(1-this.grabStrength)*30, this.lifespan/3);
 
     bezier(
       VP_WIDTH - this.position.x, this.position.y,
@@ -145,7 +145,7 @@ Particle.prototype.display = function(other) {
     );
 
     strokeWeight(15 + this.weight * 5);
-    stroke(this.position.y, (1-this.grabStrength)*100, 255, this.lifespan/10);
+    stroke(this.position.y, (1-this.grabStrength)*100, 100, this.lifespan/10);
     bezier(
       this.position.x, this.position.y,
       this.position.x - this.offset.y, this.position.y - this.offset.x,
