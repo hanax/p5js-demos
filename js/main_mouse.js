@@ -30,7 +30,7 @@ function draw() {
 
     paths[paths.length - 1].add(current, force);
 
-    next = millis() + random(30);
+    next = millis() + random(20);
 
     previous.x = current.x;
     previous.y = current.y;
@@ -79,18 +79,18 @@ Path.prototype.display = function() {
 function Particle(position, force, hue) {
   this.position = createVector(position.x, position.y);
   this.velocity = createVector(force.x/2, force.y/2);
-  this.sat = Math.min(10 + Math.sqrt((force.x*force.x) + (force.y*force.y)) * 80, 100)/100;
+  this.sat = Math.min(10 + Math.sqrt((force.x*force.x) + (force.y*force.y)) * 80, 100) / 100;
   this.offset = createVector(0, 0);
   this.drag = 0.98;
-  this.lifespan = 1;
-  this.weight = 1 + random(6);
+  this.lifespan = .8;
+  this.weight = 1 + random(5);
 }
 
 Particle.prototype.update = function() {
   this.offset.add(this.velocity);
   this.position.add(this.velocity);
   this.velocity.mult(this.drag);
-  this.lifespan = Math.max(this.lifespan - 0.003, 0.1);
+  this.lifespan -= 0.006;
 }
 
 Particle.prototype.display = function(other) {
@@ -101,7 +101,7 @@ Particle.prototype.display = function(other) {
 
     strokeCap(ROUND);
     strokeWeight(this.weight);
-    stroke(this.position.y, (1-this.sat)*100, 100-(1-this.sat)*70, this.lifespan);
+    stroke(this.position.y, Math.max(30,(1-this.sat)*100), Math.max(10, 100-(1-this.sat)*70), this.lifespan);
 
     bezier(
       this.position.x, this.position.y,
