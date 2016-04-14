@@ -112,3 +112,9 @@ Oil.prototype.display = function() {
 
   ellipse(this.position.x, this.position.y, this.size, this.size);
 }
+
+$(document).ready(function() { 
+  $('#btn-save').click(function() {
+    saveCanvas(canvas,'demo','jpg');
+  });
+});
