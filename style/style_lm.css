@@ -1,8 +1,10 @@
 body {
+  background-color: #000;
   font-family: 'Open Sans', sans-serif;
-  color: #2A2A2A;
+  color: #AAA;
   margin: 0;
   overflow: hidden;
+  font-size: 12px;
 }
 canvas {
   position: absolute;
@@ -10,19 +12,33 @@ canvas {
 }
 .btn {
   position: absolute;
-  right: 20px;
+  left: 20px;
   top: 20px;
   width: 50px;
   text-align: center;
   z-index: 1;
-  border: 1px solid rgba(0,0,0,.8);
-  padding: 10px 10px;
-  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 8px 8px;
+  /*border-radius: 4px;*/
   cursor: pointer;
   text-transform: uppercase;
   transition: all .3s;
 } 
 .btn:hover {
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(255,255,255,.1);
   color: #fff;
+}
+.credit {
+  position: absolute;
+  z-index: 1;
+  left: 20px;
+  bottom: 20px;
+}
+a {
+  color: rgba(255,255,255,.5);
+  transition: all .3s;
+  text-decoration: none;
+}
+a:hover {
+  color: rgba(255,255,255,.8);
 }

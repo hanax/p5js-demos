@@ -5,3 +5,4 @@
 * [Drawing with Leap Motion](http://hanax.github.io/p5js_demos/demo_leapmotion)
   * A visualization of hand movement
   * Video demo: https://twitter.com/A_lfalfa/status/708755403727831040
+* [Visualizing music](http://hanax.github.io/p5js_demos/demo_music)
