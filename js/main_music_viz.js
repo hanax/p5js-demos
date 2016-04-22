@@ -42,7 +42,6 @@ function draw() {
 
     colorMode(HSB, 255);
     var c = color(hue, l, l);
-    // var c = color(l, l, l);
 
     stroke(c);
 

@@ -9,5 +9,10 @@
   * Use mic as input. Need to be deployed on https or localhost.
   * Video demo: https://twitter.com/A_lfalfa/status/721078799262183424
 ![preview](http://hanax.github.io/p5js-demos/demo_pic/demo.png)
-* [Simple Music Viz](https://hanax.github.io/p5js-demos/demo_music_viz)
-![preview](http://hanax.github.io/p5js-demos/demo_pic/viz.jpg)
+* [Music Viz](https://hanax.github.io/p5js-demos/demo_music_viz)
+  * Sample viz of three Post-rock songs:
+![preview](http://hanax.github.io/p5js-demos/demo_pic/post_rock.jpg)
+  * Sample viz of three Folk songs:
+![preview](http://hanax.github.io/p5js-demos/demo_pic/folk.jpg)
+  * Sample viz of three Pop rock songs:
+![preview](http://hanax.github.io/p5js-demos/demo_pic/pop.jpg)
