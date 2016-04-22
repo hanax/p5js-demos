@@ -23,7 +23,13 @@ function setup() {
         sound.play();
       }
     } else {
-      sound = loadSound('./assets/beautiful_freak.mp3');
+      sound = loadSound('./assets/beautiful_freak.mp3', function() {
+        background(0);
+        idx_x = 0;
+        idx_y = Math.max(0, windowHeight / 2 - sound.duration() / 35 * 20);
+        hue = 255 * Math.random();
+        sound.play();
+      });
     }
   });
 }
