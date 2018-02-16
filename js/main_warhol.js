@@ -121,6 +121,6 @@ $(document).ready(function() {
     }
   });
   $('#btn-save').click(function() {
-    saveCanvas(canvas,'warhol-pollock','jpg');
+    saveCanvas(canvas,'wp','jpg');
   });
 });
